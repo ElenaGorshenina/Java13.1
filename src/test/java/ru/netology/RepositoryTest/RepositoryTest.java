@@ -43,8 +43,8 @@ class RepositoryTest {
 
     @Test
     public void compareToTest() {
+        AirTicket[] actual = repository.findAll();
         AirTicket[] expected = new AirTicket[]{spbMsk2, spbMsk1, mskSpb1, mskSpb2, spbMsk3};
-        AirTicket[] actual = new AirTicket[]{spbMsk1, spbMsk2, mskSpb1, spbMsk3, mskSpb2};
         Arrays.sort(actual);
 
         assertArrayEquals(expected, actual);

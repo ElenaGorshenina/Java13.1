@@ -6,21 +6,26 @@ import ru.netology.repository.Repository;
 public class Manager {
     private Repository repository;
 
+    public Manager(Repository repository) {
+        this.repository = repository;
+    }
+
     public void add(AirTicket airTicket) {
         repository.save(airTicket);
     }
 
     public AirTicket[] findByParam(String fromAirport, String toAirport) {
-        AirTicket[] tic = new AirTicket[0];
+        AirTicket[] result = new AirTicket[0];
         for (AirTicket airTicket : repository.findAll()) {
             if (airTicket.getFromAirport().contains(fromAirport) && airTicket.getToAirport().contains(toAirport)) {
-                int index = 0;
-                tic[index] = airTicket;
-                index++;
+                AirTicket[] tic = new AirTicket[result.length + 1];
+                System.arraycopy(result, 0, tic, 0, result.length);
+                tic[tic.length - 1] = airTicket;
+                result = tic;
             } else {
             }
         }
-        return tic;
+        return result;
     }
 
 }
